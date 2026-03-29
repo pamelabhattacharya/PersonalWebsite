@@ -1,0 +1,465 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Pamela Bhattacharya</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Resume-specific layout ── */
+    .resume-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 4rem;
+    }
+
+    .resume-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Header block */
+    .cv-header {
+      border-bottom: 2px solid var(--teal);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cv-name {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .cv-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+
+    .cv-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .cv-contact a {
+      color: var(--teal);
+    }
+
+    /* Section */
+    .cv-section {
+      margin-bottom: 2.25rem;
+    }
+
+    .cv-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--teal);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Summary */
+    .cv-summary {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* Focus tags */
+    .focus-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .focus-tag {
+      background: rgba(0,180,216,0.1);
+      border: 1px solid var(--border);
+      color: var(--teal);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    /* Metrics grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .metric-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.9rem 1rem;
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      margin-bottom: 0.3rem;
+    }
+
+    .metric-value {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Experience entries */
+    .cv-entry {
+      margin-bottom: 1.75rem;
+    }
+
+    .cv-entry-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .cv-entry-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .cv-entry-dates {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    .cv-entry-company {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .cv-entry ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cv-entry ul li {
+      font-size: 0.875rem;
+      color: var(--text);
+      padding: 0.25rem 0 0.25rem 1.25rem;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .cv-entry ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* Publications & patents */
+    .cv-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cv-list li {
+      font-size: 0.875rem;
+      color: var(--text);
+      padding: 0.3rem 0 0.3rem 1.25rem;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .cv-list li:last-child {
+      border-bottom: none;
+    }
+
+    .cv-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .cv-list li em {
+      color: var(--teal);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .cv-list li .pub-note {
+      color: var(--text-dim);
+      font-size: 0.82rem;
+    }
+
+    /* Citation note */
+    .citation-note {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .citation-note strong {
+      color: var(--teal);
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      header, .resume-actions { display: none !important; }
+      body { background: #fff !important; color: #111 !important; }
+      .resume-page { padding: 1rem !important; max-width: 100% !important; }
+      .cv-name { color: #111 !important; }
+      .cv-title, .cv-section-title, .cv-entry-title,
+      .metric-label, .cv-entry ul li::before, .cv-list li::before,
+      .cv-entry-company, .cv-contact a, .focus-tag { color: #0077a8 !important; }
+      .cv-summary, .cv-entry ul li, .cv-list li,
+      .cv-entry-dates, .citation-note { color: #333 !important; }
+      .metric-card { background: #f5f8fa !important; border-color: #cde !important; }
+      .metric-value { color: #222 !important; }
+      .focus-tag { background: #e8f6fb !important; border-color: #b0dff0 !important; }
+      .cv-section { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 600px) {
+      .cv-entry-header { flex-direction: column; gap: 0; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <nav class="nav-container">
+      <span class="nav-name">Pamela Bhattacharya</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#highlights">Highlights</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">&#9776;</button>
+    </nav>
+  </header>
+
+  <div class="resume-page">
+
+    <!-- Actions -->
+    <div class="resume-actions">
+      <button class="btn btn-outline" onclick="window.print()">Print / Save PDF</button>
+      <a href="index.html" class="btn btn-primary">&#8592; Back to Site</a>
+    </div>
+
+    <!-- Header -->
+    <div class="cv-header">
+      <div class="cv-name">Pamela Bhattacharya</div>
+      <div class="cv-title">Engineering &amp; Product Leader &mdash; Applied AI Systems</div>
+      <div class="cv-contact">
+        <a href="mailto:pamelabhattacharya@gmail.com">pamelabhattacharya@gmail.com</a>
+        <a href="index.html">Personal Website</a>
+        <a href="https://www.linkedin.com/in/pamelabh" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="cv-section">
+      <div class="cv-section-title">Summary</div>
+      <p class="cv-summary">
+        Engineering and product leader with 13+ years of experience building and scaling applied AI systems
+        across Microsoft, Meta, Lacework, and high-growth startups. Specializes in LLM-based reasoning systems,
+        AI evaluation, and agentic applications that bridge research innovation with enterprise deployment.
+        Known for exceptional resourcefulness and the ability to operationalize complex AI concepts into
+        measurable, trusted user outcomes.
+      </p>
+    </div>
+
+    <!-- Focus Areas -->
+    <div class="cv-section">
+      <div class="cv-section-title">Recent Focus Areas</div>
+      <div class="focus-tags">
+        <span class="focus-tag">LLM Reasoning &amp; Agentic Systems</span>
+        <span class="focus-tag">AI Evaluation Frameworks</span>
+        <span class="focus-tag">Human-in-the-Loop Feedback Pipelines</span>
+        <span class="focus-tag">RAG &amp; Knowledge-Grounded QA</span>
+        <span class="focus-tag">Alignment &amp; Post-Training Quality</span>
+        <span class="focus-tag">Responsible &amp; Privacy-Preserving AI</span>
+      </div>
+    </div>
+
+    <!-- Impact Metrics -->
+    <div class="cv-section">
+      <div class="cv-section-title">Selected Impact Metrics</div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">LLM Quality</span>
+          <span class="metric-value">Improved grounded correctness by 25% using query decomposition and reflection</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Safety / Trust</span>
+          <span class="metric-value">Reduced hallucination rate by 18% through post-training alignment</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Enterprise Value</span>
+          <span class="metric-value">Increased enterprise NPS by +7 points via continuous eval-driven fine-tuning</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Operational Efficiency</span>
+          <span class="metric-value">Cut offline-to-online model iteration time by 40% through automated eval</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Scale</span>
+          <span class="metric-value">2B+ PowerPoint slides served by Designer Intelligence solutions</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">User Impact</span>
+          <span class="metric-value">Grew Scheduler from hundreds of users to ~50,000 at GA; saved 100,000 hours</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="cv-section">
+      <div class="cv-section-title">Experience</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Sr. Director of Applied Science</span>
+          <span class="cv-entry-dates">Sep 2024 – Present</span>
+        </div>
+        <div class="cv-entry-company">Microsoft — Office AI &amp; Knowledge Agents</div>
+        <ul>
+          <li>Building an enterprise-grade Knowledge Agent — systems designed to understand, retrieve, and engage in intelligent conversation over complex enterprise documents and media</li>
+          <li>Developing a full-stack evaluation framework; improved grounded correctness by 25% using query decomposition and reflection, and reduced hallucination rate by 18%</li>
+          <li>Driving post-training alignment efforts; increased enterprise NPS by +7 points through continuous eval-driven fine-tuning</li>
+          <li>Established experimentation pipelines for offline→online evaluation transfer, cutting model iteration time by 40% across hundreds of LLM experiments</li>
+          <li>Partnering across Product, Research, Legal, and Privacy to ship trustworthy, responsible AI at enterprise scale</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Director of ML and Engineering</span>
+          <span class="cv-entry-dates">Apr 2023 – Sep 2024</span>
+        </div>
+        <div class="cv-entry-company">Lacework — Security Insights &amp; Efficacy <span style="color:var(--text-dim);font-weight:400;">(acquired by Fortinet, 2024)</span></div>
+        <ul>
+          <li>Built <strong>Polygraph</strong> — a detector-based ML engine creating real-time behavioral models of cloud infrastructure, documenting all processes, containers, pods, and machines to detect anomalies at scale</li>
+          <li>Designed reasoning-based triage systems combining retrieval, summarization, and reflective verification for automated risk detection and root-cause analysis</li>
+          <li>Integrated human feedback loops into model predictions to improve HHH metrics; developed Security Copilot integration for notebook-based threat investigation</li>
+          <li>Accountable for enterprise customer success; collaborated closely with Sales and Field organizations</li>
+          <li>Filed 9 patents with colleagues at Lacework</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Sr. Applied ML &amp; Engineering Manager</span>
+          <span class="cv-entry-dates">Jun 2021 – Mar 2023</span>
+        </div>
+        <div class="cv-entry-company">Meta (Facebook) — Trust, Safety &amp; Integrity Intelligence, Marketplace</div>
+        <ul>
+          <li>Led interdisciplinary teams of research scientists, ML engineers, and full-stack engineers safeguarding billions of Facebook Marketplace users</li>
+          <li>Reduced adult content impressions by 100&times; and major scam types by 20–70&times;</li>
+          <li>Drove reporting UX changes that improved fraud detection speed 19&times;</li>
+          <li>Scaled reviewer throughput and label consistency by 30%</li>
+          <li>Built and staffed the Marketplace Integrity team from scratch: hired 17 ICs and 1 EM within 6 months; hit all business metrics within a year</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Principal Applied Science &amp; Engineering Manager</span>
+          <span class="cv-entry-dates">Jul 2012 – May 2021</span>
+        </div>
+        <div class="cv-entry-company">Microsoft — Enterprise AI &amp; Productivity (Office AI)</div>
+        <ul>
+          <li>Designed and scaled an end-to-end conversational scheduling system from a primarily human-in-the-loop pipeline to &gt;95% automation, cutting manual resolution cost by &gt;80%; grew the team from 3 to 25 and GA'd the product to ~50,000 users, cumulatively saving 100,000 hours</li>
+          <li>Built <strong>Designer Intelligence</strong> for PowerPoint — recommending layouts, images, and icons using multimodal embeddings and personalization from user history; served 2B+ slides</li>
+          <li>Co-led <strong>"Tell Me"</strong> — the original natural language feature shipped across all Microsoft Office applications, enabling users to express intent and surface the right actions via NLU-based command routing</li>
+          <li>Created ML systems for predictive anomaly detection in O365 support tickets, improving issue detection latency by 50%</li>
+          <li>Filed 19 patents with colleagues at Microsoft</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Education -->
+    <div class="cv-section">
+      <div class="cv-section-title">Education</div>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">PhD, Computer Science</span>
+          <span class="cv-entry-dates">Sep 2008 – Jul 2012</span>
+        </div>
+        <div class="cv-entry-company">University of California, Riverside</div>
+        <ul>
+          <li>Dean's Distinguished Fellowship</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Publications -->
+    <div class="cv-section">
+      <div class="cv-section-title">Selected Publications</div>
+      <p class="citation-note">Published research with <strong>1,100+ citations</strong> across academic and industry venues. &nbsp;<a href="https://dblp.org" target="_blank" rel="noopener noreferrer">Full list on dblp &rarr;</a></p>
+      <ul class="cv-list">
+        <li>How our Conversational Neural Networks Can Verify Input Text &mdash; <em>ICLR 2023</em></li>
+        <li>Learned Temporal Aggregations for Fraud Classification on E-Commerce Platforms &mdash; <em>WWW 2023</em></li>
+        <li>Training with User Labels: Quality-Data-Based Pruning and Multi-Review &mdash; <em>AMLC Workshop, ICML 2022</em></li>
+        <li>To Schedule or not to Schedule: Extracting Task Specific Temporal Entities and Associated Negation Constraints &mdash; <em>EMNLP 2020</em></li>
+        <li>Multi-head Integrated Detections (MID): Scaling Detections on E-Commerce Platforms &mdash; <em>WWW 2020</em></li>
+      </ul>
+    </div>
+
+    <!-- Patents -->
+    <div class="cv-section">
+      <div class="cv-section-title">Selected Patents</div>
+      <p class="citation-note"><strong>24+ patent applications</strong> across Microsoft (19) and Lacework (9), including:</p>
+      <ul class="cv-list">
+        <li>Intelligent interpretation of temporal expressions <span class="pub-note">&mdash; 2022</span></li>
+        <li>Unified multilingual command recommendation model <span class="pub-note">&mdash; 2022</span></li>
+        <li>Predicting service issues by detecting anomalies in event signals</li>
+        <li>Correlating distinct events using linguistic analysis</li>
+        <li>Task-specific temporal entity extraction</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Pamela Bhattacharya</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
